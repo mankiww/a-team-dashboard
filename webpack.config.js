@@ -28,6 +28,12 @@ module.exports = (_, argv) => ({
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.(png)$/,
+        use: [{
+          loader: "file-loader",
+        }],
+      },
     ],
   },
   plugins: [
