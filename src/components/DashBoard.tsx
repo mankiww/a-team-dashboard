@@ -22,9 +22,8 @@ export default function DashBoard() {
       <Heading title="들어온 요청" subTitle="파트너님에게 딱 맞는 요청서를 찾아보세요" />
       <FilterBar>
         <div>
-          <select>
-            <option>재료</option>
-          </select>
+          <Filter subject="가공방법" options={["선반"]} />
+          <Filter subject="재료" options={["알루미늄"]} />
         </div>
         <div>
           <ToggleButton isChecked={false} onToggle={(isChecked) => console.log(isChecked)} />
