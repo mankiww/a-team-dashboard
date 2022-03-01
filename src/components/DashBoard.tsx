@@ -1,28 +1,12 @@
 import styled from "styled-components";
 
+import Heading from "./Heading";
+import Filter from "./Filter";
 import ToggleButton from "./ToggleButton";
 import CardList from "./CardList";
 
 const Main = styled.div`
   padding: 155px;
-`;
-
-const Heading = styled.div`
-  color: #323D45;
-`;
-
-const Title = styled.h1`
-  margin-bottom: 0;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 32px;
-`;
-
-const SubTitle = styled.h2`
-  margin: 0;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
 `;
 
 const FilterBar = styled.div`
@@ -35,21 +19,15 @@ const FilterBar = styled.div`
 export default function DashBoard() {
   return (
     <Main>
-      <Heading>
-        <Title>들어온 요청</Title>
-        <SubTitle>파트너님에게 딱 맞는 요청서를 찾아보세요</SubTitle>
-      </Heading>
+      <Heading title="들어온 요청" subTitle="파트너님에게 딱 맞는 요청서를 찾아보세요" />
       <FilterBar>
         <div>
-          <select>
-            <option>가공방식</option>
-          </select>
           <select>
             <option>재료</option>
           </select>
         </div>
         <div>
-          <ToggleButton />
+          <ToggleButton isChecked={false} onToggle={(isChecked) => console.log(isChecked)} />
           상담중인 요청만 보기
         </div>
       </FilterBar>
