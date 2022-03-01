@@ -59,7 +59,7 @@ export default function ToggleButton({ isChecked, onToggle }: ToggleButtonProps)
 
   return (
     <ToggleButtonContainer htmlFor="toggle" onClick={handleClick}>
-      <HiddenInput name="toggle" type="checkbox" checked={isChecked} />
+      <HiddenInput name="toggle" type="checkbox" checked={isChecked} readOnly />
       <Slider />
     </ToggleButtonContainer>
   );
