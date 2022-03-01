@@ -4,6 +4,8 @@ import { MdDomain } from "react-icons/md";
 import logo from "./image/logo.png";
 import GlobalStyle from "./GlobalStyle";
 
+import Card from "./components/Card";
+
 const Header = styled.header`
   position: absolute;
   left: 0%;
@@ -112,12 +114,6 @@ const CardList = styled.div`
   flex-wrap: wrap;
 `;
 
-const Card = styled.div`
-  border: blue 1px solid;
-  width: 366px;
-  height: 356px;
-`;
-
 const ToggleButton = styled.label`
   position: relative;
   display: inline-block;
@@ -215,7 +211,7 @@ export default function App() {
           </div>
         </FilterBar>
         <CardList>
-          {new Array(6).fill(null).map(() => <Card />)}
+          {new Array(6).fill(null).map(() => <Card title="title" client="client" due="2020.12.14" count={2} amount={100} method={["밀링", "선반"]} material={["알루미늄"]} status="대기중" />)}
         </CardList>
       </Main>
     </div>
