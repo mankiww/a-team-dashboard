@@ -4,7 +4,7 @@ import { MdDomain } from "react-icons/md";
 import logo from "./image/logo.png";
 import GlobalStyle from "./GlobalStyle";
 
-import Card from "./components/Card";
+import CardList from "./components/CardList";
 
 const Header = styled.header`
   position: absolute;
@@ -109,11 +109,6 @@ const FilterBar = styled.div`
   width: 100%;
 `;
 
-const CardList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
 const ToggleButton = styled.label`
   position: relative;
   display: inline-block;
@@ -210,9 +205,7 @@ export default function App() {
             상담중인 요청만 보기
           </div>
         </FilterBar>
-        <CardList>
-          {new Array(6).fill(null).map(() => <Card title="title" client="client" due="2020.12.14" count={2} amount={100} method={["밀링", "선반"]} material={["알루미늄"]} status="대기중" />)}
-        </CardList>
+        <CardList />
       </Main>
     </div>
   );
