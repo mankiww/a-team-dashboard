@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Request } from "./types";
+
 const CardWrapper = styled.div`
   position: relative;
   border: blue 1px solid;
@@ -24,16 +26,7 @@ const DescriptionList = styled.dl`
   grid-template-columns: 1fr 1fr;
 `;
 
-interface CardProps {
-  title: string,
-  client: string,
-  due: string,
-  count: number,
-  amount: number,
-  method: string[],
-  material: string[],
-  status: "대기중" | "상담중",
-}
+type CardProps = Request;
 
 export default function Card({
   title, client, due, count, amount, method, material, status,

@@ -9,5 +9,6 @@
       { "runtime": "automatic" }
     ],
     "@babel/typescript"
-  ]
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]
 }
