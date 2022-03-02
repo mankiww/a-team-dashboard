@@ -1,4 +1,4 @@
-export interface Request {
+interface Request {
   id: number,
   title: string,
   client: string,
@@ -9,3 +9,5 @@ export interface Request {
   material: string[],
   status: "대기중" | "상담중",
 }
+
+export default Request;

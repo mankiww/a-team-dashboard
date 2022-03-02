@@ -5,7 +5,7 @@ import { MdAutorenew } from "react-icons/md";
 import DropBox from "../components/DropBox";
 import ToggleButton from "../components/ToggleButton";
 import getRequests from "../api/getRequests";
-import { Request } from "../components/types";
+import Request from "../@types/request";
 
 const FilterBarContainer = styled.div`
   display: flex;
