@@ -1,4 +1,4 @@
-import { Request } from "../components/types";
+import Request from "../@types/request";
 
 export default async function getRequests() : Promise<Request[]> {
   const response = await fetch("http://localhost:3000/requests");

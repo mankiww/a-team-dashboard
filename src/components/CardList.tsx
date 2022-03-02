@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 import Card from "./Card";
-import { Request } from "./types";
+import Request from "../@types/request";
 
 const CardListContainer = styled.div`
   display: flex;
+  gap: 16px;
   flex-wrap: wrap;
 `;
 
