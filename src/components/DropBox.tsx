@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const MultipleSelectorContainer = styled.div`
@@ -9,6 +9,11 @@ const MultipleSelectorContainer = styled.div`
   &:hover div {
     display: flex;
     flex-direction: column;
+  }
+
+  &:hover select {
+    color: #ffffff;
+    background-color: #1565C0;
   }
 `;
 
@@ -23,6 +28,8 @@ const Options = styled.div`
   width: max-content;
   padding: 10px 15px 10px 5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  border: 1px solid #939FA5;
   background-color: #f9f9f9;
 
   label:hover {
@@ -30,19 +37,31 @@ const Options = styled.div`
   }
 `;
 
-interface FilterProps {
+interface DropBoxProps {
   subject: string,
   options: string[],
-  onChange: (option: string, isSelected: boolean) => void,
+  onChange: (selectedOptions: string[]) => void,
 }
 
-export default function Filter({ subject, options, onChange }: FilterProps) {
-  const handleClick = (ev: React.MouseEvent<HTMLSelectElement>) => {
+export default function DropBox({
+  subject, options, onChange,
+}: DropBoxProps) {
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  useEffect(() => {
+    onChange(selectedOptions);
+  }, [selectedOptions]);
+
+  const handleFakeSelectorClick = (ev: React.MouseEvent<HTMLSelectElement>) => {
     ev.preventDefault();
   };
 
   const handleOptionChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(ev.target.value, ev.target.checked);
+    if (ev.target.checked) {
+      setSelectedOptions([...selectedOptions, ev.target.value]);
+    } else {
+      setSelectedOptions(selectedOptions.filter((option) => option !== ev.target.value));
+    }
   };
 
   const optionsElement = options.map((option) => (
@@ -55,8 +74,8 @@ export default function Filter({ subject, options, onChange }: FilterProps) {
   return (
     <MultipleSelectorContainer>
       <FakeSelector
-        onClick={handleClick}
-        onMouseDown={handleClick}
+        onClick={handleFakeSelectorClick}
+        onMouseDown={handleFakeSelectorClick}
       >
         <option>{subject}</option>
       </FakeSelector>

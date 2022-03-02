@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import { MdAutorenew } from "react-icons/md";
 
-import Filter from "../components/Filter";
+import DropBox from "../components/DropBox";
 import ToggleButton from "../components/ToggleButton";
 import getRequests from "../api/getRequests";
 import { Request } from "../components/types";
@@ -13,11 +14,30 @@ const FilterBarContainer = styled.div`
   width: 100%;
 `;
 
-const FiltersContainer = styled.div`
+const FiltersWrapper = styled.div`
   display: flex;
+  align-items: center;
+`;
+
+const ToggleButtonLabel = styled.p`
+  display: inline;
+`;
+
+const ResetButtonWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  margin: 10px;
+  cursor: pointer;
+
+  color: #2196F3;
+
+  &:active svg {
+    box-shadow: inset;
+  }
 `;
 
 export function useFilterRequests(): [Request[], JSX.Element] {
+  const [isReset, setIsReset] = useState(false);
   const [isOnlyOnProcess, setIsOnlyOnProcess] = useState(false);
   const [requests, setRequests] = useState([]);
   const [filteredRequests, setFilteredRequests] = useState([]);
@@ -26,7 +46,6 @@ export function useFilterRequests(): [Request[], JSX.Element] {
   const [selectedMaterials, setSelectedMaterials] = useState([]);
   const [selectedMethods, setSelectedMethods] = useState([]);
 
-  // 걸러낼 대상을 가져온다
   useEffect(() => {
     async function fetchRequests() {
       const requests = await getRequests();
@@ -43,6 +62,11 @@ export function useFilterRequests(): [Request[], JSX.Element] {
   }, []);
 
   useEffect(() => {
+    if (!selectedMaterials.length && !selectedMaterials.length) {
+      setFilteredRequests(requests);
+      return;
+    }
+
     const filteredRequests = requests.filter(({ method, material }) => {
       if (
         selectedMaterials.length
@@ -64,31 +88,39 @@ export function useFilterRequests(): [Request[], JSX.Element] {
     setFilteredRequests(filteredRequests);
   }, [requests, selectedMaterials, selectedMethods]);
 
-  const handleMethodFilterChange = (option: string, isSelected: boolean) => {
-    if (isSelected) {
-      setSelectedMethods([...selectedMethods, option]);
-    } else {
-      setSelectedMethods(selectedMethods.filter((selected) => selected !== option));
+  useEffect(() => {
+    if (!isReset) {
+      return;
     }
+
+    setSelectedMaterials([]);
+    setSelectedMethods([]);
+    setIsReset(false);
+  }, [isReset]);
+
+  const handleResetButtonClick = () => {
+    setIsReset(true);
   };
 
-  const handleMaterialFilterChange = (option: string, isSelected: boolean) => {
-    if (isSelected) {
-      setSelectedMaterials([...selectedMaterials, option]);
-    } else {
-      setSelectedMaterials(selectedMaterials.filter((selected) => selected !== option));
-    }
-  };
+  const resetButton = (
+    <ResetButtonWrapper onClick={handleResetButtonClick}>
+      <MdAutorenew />
+      필터링 리셋
+    </ResetButtonWrapper>
+  );
 
   const filterBar = (
     <FilterBarContainer>
-      <FiltersContainer>
-        <Filter subject="가공방식" options={methods} onChange={handleMethodFilterChange} />
-        <Filter subject="재료" options={materials} onChange={handleMaterialFilterChange} />
-      </FiltersContainer>
+      {!isReset && (
+        <FiltersWrapper>
+          <DropBox subject="가공방식" options={methods} onChange={setSelectedMethods} />
+          <DropBox subject="재료" options={materials} onChange={setSelectedMaterials} />
+          {resetButton}
+        </FiltersWrapper>
+      )}
       <div>
         <ToggleButton isChecked={isOnlyOnProcess} onToggle={setIsOnlyOnProcess} />
-        상담중인 요청만 보기
+        <ToggleButtonLabel>상담중인 요청만 보기</ToggleButtonLabel>
       </div>
     </FilterBarContainer>
   );
