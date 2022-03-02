@@ -10,7 +10,8 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
-    "keyofStringsOnly": true
+    "keyofStringsOnly": true,
+    "resolveJsonModule": true
   },
   "typeRoots": ["node_modules/@types", "src/@type"],
   "exclude": [
@@ -20,7 +21,6 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts",
     "./node_modules/**/*"
   ],
   "include": ["./src/**/*", "@type"]

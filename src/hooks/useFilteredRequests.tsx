@@ -44,7 +44,7 @@ const ResetButtonWrapper = styled.div`
   }
 `;
 
-export function useFilterRequests(): [Request[], JSX.Element] {
+export default function useFilterRequests(): [Request[], JSX.Element] {
   const [isReset, setIsReset] = useState(false);
   const [isOnlyOnProcess, setIsOnlyOnProcess] = useState(false);
   const [requests, setRequests] = useState([]);
@@ -57,6 +57,7 @@ export function useFilterRequests(): [Request[], JSX.Element] {
   useEffect(() => {
     async function fetchRequests() {
       const requests = await getRequests();
+
       const methods = getItems(requests, "method");
       const materials = getItems(requests, "material");
 
@@ -70,7 +71,7 @@ export function useFilterRequests(): [Request[], JSX.Element] {
   }, []);
 
   useEffect(() => {
-    if (!selectedMaterials.length && !selectedMaterials.length) {
+    if (!selectedMaterials.length && !selectedMethods.length) {
       setFilteredRequests(requests);
       return;
     }

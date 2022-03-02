@@ -49,8 +49,18 @@ export default function DropBox({
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   useEffect(() => {
+    if (!options.length) {
+      setSelectedOptions([]);
+    }
+  }, [options]);
+
+  useEffect(() => {
+    if (!options.length) {
+      return;
+    }
+
     onChange(selectedOptions);
-  }, [selectedOptions]);
+  }, [options, selectedOptions]);
 
   const handleFakeSelectorClick = (ev: React.MouseEvent<HTMLSelectElement>) => {
     ev.preventDefault();
