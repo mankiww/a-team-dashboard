@@ -5,7 +5,6 @@ const ToggleButtonContainer = styled.label`
   display: inline-block;
   width: 34px;
   height: 20px;
-  margin: 5px;
 `;
 
 const HiddenInput = styled.input`

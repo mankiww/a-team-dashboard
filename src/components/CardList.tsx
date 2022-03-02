@@ -4,9 +4,14 @@ import Card from "./Card";
 import Request from "../@types/request";
 
 const CardListContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(344px, 1fr));
   gap: 16px;
   flex-wrap: wrap;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 interface CardListProps {

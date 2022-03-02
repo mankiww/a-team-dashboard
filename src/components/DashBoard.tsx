@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
 
 import Heading from "./Heading";
 import CardList from "./CardList";
@@ -7,6 +6,11 @@ import { useFilterRequests } from "../hooks/useFilteredRequests";
 
 const Main = styled.div`
   padding: 155px;
+
+  @media (max-width: 750px) {
+    padding: 10px;
+    margin-top: 80px;
+  }
 `;
 
 export default function DashBoard() {
