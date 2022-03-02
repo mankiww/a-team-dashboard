@@ -15,7 +15,9 @@ interface CardListProps {
 export default function CardList({ list }: CardListProps) {
   return (
     <CardListContainer>
-      {list.map((info) => <Card key={info.id} {...info} />)}
+      {list.length !== 0
+        ? list.map((info) => <Card key={info.id} {...info} />)
+        : <div>조건에 맞는 견적사항이 없습니다.</div>}
     </CardListContainer>
   );
 }
