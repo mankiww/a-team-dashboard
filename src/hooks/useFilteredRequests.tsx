@@ -12,6 +12,13 @@ const FilterBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin: 32px 0;
+  white-space: nowrap;
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const FiltersWrapper = styled.div`
@@ -21,6 +28,7 @@ const FiltersWrapper = styled.div`
 
 const ToggleButtonLabel = styled.p`
   display: inline;
+  margin-left: 10px;
 `;
 
 const ResetButtonWrapper = styled.div`
@@ -111,13 +119,11 @@ export function useFilterRequests(): [Request[], JSX.Element] {
 
   const filterBar = (
     <FilterBarContainer>
-      {!isReset && (
-        <FiltersWrapper>
-          <DropBox subject="가공방식" options={methods} onChange={setSelectedMethods} />
-          <DropBox subject="재료" options={materials} onChange={setSelectedMaterials} />
-          {resetButton}
-        </FiltersWrapper>
-      )}
+      <FiltersWrapper>
+        <DropBox subject="가공방식" options={isReset ? [] : methods} onChange={setSelectedMethods} />
+        <DropBox subject="재료" options={isReset ? [] : materials} onChange={setSelectedMaterials} />
+        {resetButton}
+      </FiltersWrapper>
       <div>
         <ToggleButton isChecked={isOnlyOnProcess} onToggle={setIsOnlyOnProcess} />
         <ToggleButtonLabel>상담중인 요청만 보기</ToggleButtonLabel>

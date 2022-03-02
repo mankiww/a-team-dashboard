@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   body {
+    position: relative;
     font-family: "Noto Sans KR";
   }
 
@@ -13,6 +14,12 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
+  }
+
+  #menu {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 

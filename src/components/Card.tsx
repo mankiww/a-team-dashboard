@@ -4,7 +4,8 @@ import Request from "../@types/request";
 
 const CardWrapper = styled.div`
   position: relative;
-  width: 366px;
+  width: 100%;
+  min-width: 345px;
   height: 356px;
   padding: 24px 16px;
   border-radius: 4px;
@@ -14,6 +15,10 @@ const CardWrapper = styled.div`
 
   &:hover {
     border: 2px solid #2196F3;
+  }
+
+  @media (max-width: 375px) {
+    width: calc(100%-20px);
   }
 `;
 
@@ -43,7 +48,6 @@ const Due = styled.p`
 `;
 
 const Divider = styled.hr`
-  width: 334px;
   border: 1px solid #E5E5E5;
 `;
 
