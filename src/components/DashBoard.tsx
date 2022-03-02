@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Heading from "./Heading";
 import CardList from "./CardList";
-import { useFilterRequests } from "../hooks/useFilteredRequests";
+import useFilterRequests from "../hooks/useFilteredRequests";
 
 const Main = styled.div`
   padding: 155px;
