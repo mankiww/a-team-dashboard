@@ -8,6 +8,10 @@ const CardListContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(344px, 1fr));
   gap: 16px;
   flex-wrap: wrap;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 interface CardListProps {

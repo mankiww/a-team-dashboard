@@ -17,8 +17,8 @@ const CardWrapper = styled.div`
     border: 2px solid #2196F3;
   }
 
-  @media (max-width: 375px) {
-    width: calc(100%-20px);
+  @media (max-width: 450px) {
+    min-width: 230px;
   }
 `;
 
